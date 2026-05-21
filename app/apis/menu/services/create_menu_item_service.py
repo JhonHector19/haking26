@@ -16,7 +16,6 @@ def create_menu_item(
     menu_item: schemas.MenuItemCreate,
     current_user: Annotated[User, Depends(get_current_user)],
     db: Session = Depends(get_db),
-    auth=Depends(RolesBasedAuthChecker([UserRole.EMPLOYEE, UserRole.CHEF])),
 ):
     db_item = utils.create_menu_item(db, menu_item)
     return db_item
